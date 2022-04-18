@@ -5,3 +5,7 @@ html, body {
 canvas {
   display: block;
 }
+
+#sketch1{
+  margin-left: 200px;
+}

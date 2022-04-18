@@ -2,24 +2,180 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script src="p5.js"></script>
+  <script src="p5.sound.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="p5.js"></script>
+  <title>Sketch Gallery by Sissy</title>
   <style>
-    html{
+    *{
+      margin: 10px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    body{
       background-color: black;
     }
-    #myContainer {
-      position: absolute;
-      left: 100px;
-      top: 100px
+    .shell{
+      padding-left: 180px;
+      padding-right: 180px;
+      padding-bottom: 0px;
+      position: relative;
+      align-items: center;
     }
+
+    .shell .box{
+      width: 250px;
+      height: 250px;
+      float: left;
+      overflow: hidden;
+      margin: 30px;
+    }
+
+    .shell .box .image img{
+      width: 100%;
+
+    }
+    .title{
+      padding-left: 20px;
+      padding-top: 20px;
+      padding-right: 20px;
+      font-size: 100px;
+      text-shadow: 20px;
+      color: white;
+    }
+    .secondaryTitle{
+      padding-left: 20px;
+      padding-bottom: 20px;
+      padding-right: 20px;
+      font-size: 50px;
+      color:rgb(186, 186, 186); 
+      text-shadow: 20px;
+    }
+    .workTitle{
+      font-family: 'Pacifico', cursive;
+      /* ???????????????????????????????????????????????? */
+      position: relative;
+      font-size:30px;
+      padding: 10px;
+      padding-top: 150px;
+      text-align: center;
+      color: white;
+      
+    }
+    /* .column {
+            width: 30%;
+            float: left;
+        } */
+        
+    #sketch1{
+      position:fixed;
+      right: 30px;
+      top: 0px;
+    }
+
+    .part2 {
+      margin: 200px;
+      padding-left: 180px;
+      padding-right: 180px;
+      /* ?????????????????????????????????????????????????????? */
+    }
+
+    .sectiontitle{
+      /* background-color: aquamarine; */
+      position: relative;
+      /* background-color: aquamarine; */
+      font-size:20px;
+      padding: 10px;
+      color: white;
+      width: 30%;
+    }
+    .content{
+      position: relative;
+      /* background-color: bisque; */
+      width: 40%;
+      /* float: left; */
+      font: size 20px;
+      padding: 10px;
+      text-align:left;
+      color: white;
+    }
+
   </style>
 </head>
+
 <body>
-  <script src="sketch.js"></script>
+  <section>
+    <div class = "title">
+      <h2>Sketchs Gallery</h2>
+    </div>
+    <div class = "secondaryTitle">
+      <h2>by Sissy</h2>
+    </div>
+
+    <div class = "workTitle">
+      <h2>Varying Snowflake</h2>
+    </div>
+
+
+  </section>
+
+  <div class = "shell">
+    <!-- <div class = "box">
+    </div> -->
+
+    <div class = "box">
+      <div class = "image">
+        <img src = "pic1.jpg">
+      </div>
+    </div>
+    
+    <div class = "box">
+      <div class = "image">
+        <img src = "pic2.jpg">
+      </div>
+    </div>
+
+    <div class = "box">
+      <div class = "image">
+        <img src = "pic3.jpg">
+      </div>
+    </div>
+
+    <div class = "box">
+      <div class = "image">
+        <img src = "pic4.jpg">
+      </div>
+    </div>
+
+    <!-- <div class = "box">
+    </div> -->
+
+  </div>
+  </section>
+    <div id="sketch1"></div>
+  
+
+  <div class = "part2"></div>
+    <div>
+      <div class = "sectiontitle">
+        <h1>Introduction</h1>
+      </div>
+      <div class = "content">
+        <p>The work interprets the uniqueness of snowflakes in nature as well as the beauty and variability of snowflakes in the artist’s imagination in the form of generative art and black and white aesthetics. The interaction with the mouse provides an interactive experience for the viewer and presents the condense, melt, and break of the snowflake.</p>
+      </div>
+    </div>
+    <div>
+
+    <div class = "sectiontitle">
+      <h1>Inspiration</h1>
+    </div>
+    <div class = "content">
+      <p>The work interprets the uniqueness of snowflakes in nature as well as the beauty and variability of snowflakes in the artist’s imaginatio</p>
+    </div>
+  </div>
+</div>
+
 </body>
+<script src="sketch1.js"></script>
 </html>
-
-

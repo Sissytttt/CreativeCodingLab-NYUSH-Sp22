@@ -18,11 +18,11 @@ triangles = [];
 // }
 
 function setup() {
-  let cnv2 = createCanvas(600, 600);
+  let cnv2 = createCanvas(500, 500);
   cnv2.parent("sketch2");
   let startX = width / 2;
   let startY = height / 2;
-  background(50);
+  background(0);
   initAngle = PI / 3;
 
   //第一层
@@ -70,7 +70,7 @@ function setup() {
   }
 }
 function draw() {
-  background(50);
+  background(0);
   // console.log(allParticles[1].a)
 
   for (let a = 0; a < allParticles.length; a++) {

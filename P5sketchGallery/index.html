@@ -5,9 +5,13 @@
   <script src="p5.js"></script>
   <script src="p5.sound.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sketch Gallery by Sissy</title>
+  <!-- <link rel="import" hred = "page2.html" id="page2"/> -->
   <style>
     *{
       margin: 10px;
@@ -17,11 +21,11 @@
       background-color: black;
     }
     .shell{
-      padding-left: 180px;
-      padding-right: 180px;
-      padding-bottom: 0px;
-      position: relative;
-      align-items: center;
+      padding-left: 18%;
+      /* padding-right: 25%; */
+      /* padding-bottom: 0px; */
+      /* position: relative; */
+      /* align-items: center; */
     }
 
     .shell .box{
@@ -29,13 +33,17 @@
       height: 250px;
       float: left;
       overflow: hidden;
-      margin: 30px;
+      /* margin: 30px; */
+      /* margin: 0 auto; */
     }
 
     .shell .box .image img{
+      /* float: left; */
+      /* margin:50px; */
       width: 100%;
 
     }
+
     .title{
       padding-left: 20px;
       padding-top: 20px;
@@ -53,8 +61,7 @@
       text-shadow: 20px;
     }
     .workTitle{
-      font-family: 'Pacifico', cursive;
-      /* ???????????????????????????????????????????????? */
+      /* font-family: myFirstFont; */
       position: relative;
       font-size:30px;
       padding: 10px;
@@ -69,38 +76,67 @@
         } */
         
     #sketch1{
-      position:fixed;
+      position:absolute;
       right: 30px;
       top: 0px;
     }
 
-    .part2 {
-      margin: 200px;
-      padding-left: 180px;
-      padding-right: 180px;
-      /* ?????????????????????????????????????????????????????? */
-    }
 
     .sectiontitle{
       /* background-color: aquamarine; */
       position: relative;
       /* background-color: aquamarine; */
       font-size:20px;
-      padding: 10px;
+      /* padding: 10px; */
       color: white;
       width: 30%;
     }
     .content{
       position: relative;
       /* background-color: bisque; */
-      width: 40%;
+      width: 65%;
       /* float: left; */
       font: size 20px;
-      padding: 10px;
+      /* padding: 10px; */
       text-align:left;
       color: white;
     }
 
+    .decoration1{
+      position:absolute;
+      right: 70px;
+      top: 950px;
+      width: 400px;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .decoration2{
+      position:absolute;
+      left: 50px;
+      top: 330px;
+      width: 400px;
+      -webkit-filter: opacity(80%); 
+      filter: opacity(80%);
+      /* height: 300px; */
+      overflow: hidden;
+    }
+
+    .decoration1 img{
+      width: 100%;
+    }
+
+    .decoration2 img{
+      width: 100%;
+    }
+
+    .tryout{
+      position: relative;;
+      /* background-color: aquamarine; */
+      font-size:20px;
+      padding-top: 30px;
+      color: white;
+    }
   </style>
 </head>
 
@@ -114,7 +150,7 @@
     </div>
 
     <div class = "workTitle">
-      <h2>Varying Snowflake</h2>
+      <h1>Varying Snowflake</h1>
     </div>
 
 
@@ -129,51 +165,64 @@
         <img src = "pic1.jpg">
       </div>
     </div>
-    
+
     <div class = "box">
       <div class = "image">
         <img src = "pic2.jpg">
       </div>
     </div>
-
-    <div class = "box">
+      <div class = "box">
       <div class = "image">
         <img src = "pic3.jpg">
       </div>
     </div>
-
-    <div class = "box">
+      <div class = "box">
       <div class = "image">
         <img src = "pic4.jpg">
       </div>
-    </div>
 
     <!-- <div class = "box">
     </div> -->
 
   </div>
-  </section>
+
     <div id="sketch1"></div>
   
 
-  <div class = "part2"></div>
-    <div>
+
+    <div class = "part2">
+        <div class = "sectiontitle">
+          <h1>Introduction</h1>
+        </div>
+
+        <div class = "content">
+          <p style = "font-size: 20px;">The work interprets the uniqueness of snowflakes in nature as well as the beauty and variability of snowflakes in the artist’s imagination in the form of generative art and black and white aesthetics. The interaction with the mouse provides an interactive experience for the viewer and presents the condense, melt, and break of the snowflake. </p>
+        </div>
+
+
       <div class = "sectiontitle">
-        <h1>Introduction</h1>
+        <h1>Inspiration</h1>
       </div>
       <div class = "content">
-        <p>The work interprets the uniqueness of snowflakes in nature as well as the beauty and variability of snowflakes in the artist’s imagination in the form of generative art and black and white aesthetics. The interaction with the mouse provides an interactive experience for the viewer and presents the condense, melt, and break of the snowflake.</p>
+        <p style = "font-size: 20px;">There has no exactly two same snowflakes in the world. As the same, though follows the same rule every time, their won't be any same generitive work born from the computer. From this point, the snowflake perfectly explain the basic characteristic of the generative art.</p>
       </div>
-    </div>
-    <div>
+    
 
-    <div class = "sectiontitle">
-      <h1>Inspiration</h1>
-    </div>
-    <div class = "content">
-      <p>The work interprets the uniqueness of snowflakes in nature as well as the beauty and variability of snowflakes in the artist’s imaginatio</p>
+    <div class = "tryout">
+      <p> Explore this work<a href = ".\page2.html" target = "_blank"> here </a></p>
+      <!-- <button onclick = "page2.html" style = "background-color: azure";>New pattern!</button> -->
+      <p> Know more about the work from <a href = "https://wp.nyu.edu/sissytian/2022/04/01/midterm-project-and-reflection/" target = "_blank">here</a></p>
     </div>
   </div>
+
+
+
+<div class = "decoration1">
+  <img src="sf2.png">
+</div>
+
+<div class = "decoration2">
+   <img src="dec2.jpg">
 </div>
 
 </body>

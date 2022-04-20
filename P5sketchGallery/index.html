@@ -115,7 +115,7 @@
       position:absolute;
       left: 50px;
       top: 330px;
-      width: 400px;
+      width: 430px;
       -webkit-filter: opacity(80%); 
       filter: opacity(80%);
       /* height: 300px; */
@@ -130,7 +130,7 @@
       width: 100%;
     }
 
-    .tryout{
+    .button{
       position: relative;;
       /* background-color: aquamarine; */
       font-size:20px;
@@ -141,6 +141,55 @@
     a{
       color: white
     }
+
+    .button1 {
+        background-color:#6c6c6c;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 4px 2px;
+        cursor: pointer;
+        transition-duration: 1.5s;
+        /*https://www.w3schools.com/css/css3_buttons.asp*/
+      }
+    .button1:hover{
+        background-color:rgb(230, 230, 230);
+        color:#000000;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .button2 {
+        background-color:#6c6c6c;
+        color: white;
+        padding: 10px;
+        margin-left: 40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        cursor: pointer;
+        transition-duration: 1.5s;
+      }
+    .button2:hover{
+        background-color:rgb(230, 230, 230);
+        color:#000000;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
   </style>
 </head>
 
@@ -210,12 +259,15 @@
       <div class = "content">
         <p style = "font-size: 20px;">There has no exactly two same snowflakes in the world. As the same, though follows the same rule every time, their won't be any same generitive work born from the computer. From this point, the snowflake perfectly explain the basic characteristic of the generative art.</p>
       </div>
+
     
 
-    <div class = "tryout">
-      <p> Explore this work<a href = ".\page2.html" target = "_blank"> here </a></p>
+    <div class = "button">
+      <a href="page2.html" class="button1">Explore the work</a>
+      <a href="https://wp.nyu.edu/sissytian/2022/04/01/midterm-project-and-reflection/" class="button2">Know more about the work</a>
+      <!-- <p> Explore this work<a href = ".\page2.html" target = "_blank"> here </a></p> -->
       <!-- <button onclick = "page2.html" style = "background-color: azure";>New pattern!</button> -->
-      <p> Know more about the work from <a href = "https://wp.nyu.edu/sissytian/2022/04/01/midterm-project-and-reflection/" target = "_blank">here</a></p>
+      <!-- <p> Know more about the work from <a href = "https://wp.nyu.edu/sissytian/2022/04/01/midterm-project-and-reflection/" target = "_blank">here</a></p> -->
     </div>
   </div>
 
@@ -228,6 +280,7 @@
 <div class = "decoration2">
    <img src="dec2.jpg">
 </div>
+
 
 </body>
 <script src="sketch1.js"></script>

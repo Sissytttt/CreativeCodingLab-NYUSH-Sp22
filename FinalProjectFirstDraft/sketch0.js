@@ -1,6 +1,6 @@
 let width;
 let height;
-
+let flowers = [];
 
 function preload(){
   img = loadImage("page0Tree/Tree.png");
@@ -13,26 +13,29 @@ function setup() {
   Canvas.parent('canvas-container');
   width = window.innerWidth;
   height = window.innerHeight;
-  title = text("EXPLORE", width/2, height/3);
+  // title = text("EXPLORE", width/2, height/3);
   noCursor();
+
+  for (let i = 0; i < 30; i++) {
+    flowers.push(new Flower(random(100, width/2), random(0, height/3)));
+  }
+
 }
 
 function draw() {
   background(255, 246, 212);
-drawHills()
-ellipse(mouseX, mouseY, 10, 10);
+  drawHills()
+
+  for (let i = 0; i < flowers.length; i++) {
+    flowers[i].display();
+    flowers[i].update();
+    flowers[i].interaction();
+  }
+  ellipse(mouseX, mouseY, 10, 10);
+
+  // background(255, 246, 212, trans);
 }
 
-
-window.onresize = function() {
-  var w = window.innerWidth;
-  var h = window.innerHeight;
-  canvas.size(w,h);
-  // fsize = window.innerHeight/4;
-  title.textSize(fsize);
-  width = w;
-  height = h;
-}
 
 
 function drawHills(){
@@ -131,4 +134,49 @@ function drawHills(){
 
 
   
+}
+
+
+
+
+class Flower {
+  constructor(xpos, ypos) {
+    this.x = xpos;
+    this.y = ypos;
+    this.baseX = xpos;
+    this.baseY = ypos;
+    push();
+    colorMode(HSB, 100);
+    this.color = color(random(85, 100), random(20, 70), 100, random(40, 90));
+    pop();
+    this.r = random(40, 80);
+    this.noisex = random(20);
+    this.noisey = random(20);
+    this.range = 20;
+
+    this.canPlay = true;
+  }
+  display() {
+    noStroke();
+    fill(this.color);
+    circle(this.x, this.y, this.r);
+  }
+  update() {
+    this.x =
+      this.baseX + map(noise(this.noisex), 0, 1, -this.range, this.range);
+    this.y =
+      this.baseY + map(noise(this.noisey), 0, 1, -this.range, this.range);
+    this.noisex += 0.001;
+    this.noisey += 0.001;
+  }
+  interaction() {
+    if (dist(mouseX, mouseY, this.x, this.y) < 3 * this.r) {
+      this.range += 1;
+    } else {
+      this.range -= 1;
+      if (this.range <= 20) {
+        this.range = 20;
+      }
+    }
+  }
 }

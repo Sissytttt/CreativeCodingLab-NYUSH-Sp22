@@ -64,8 +64,8 @@ function setup() {
   sunset.setupSuns();
 
   // tree
-  for (let i = 0; i < 20; i++) {
-    flowers.push(new Flower(random(width/3 - width/12, width/3 + width/12), random(height - height/7, height - height/2.3)));
+  for (let i = 0; i < 25; i++) {
+    flowers.push(new Flower(random(width/3 - width/10, width/3 + width/10), random(height - height/6, height - height/1.9)));
   }
 }
 
@@ -473,7 +473,7 @@ function drawTrunk(xpos, ypos) {
   push();
   noStroke();
   translate(xpos, ypos);
-  scale(1.5, 1.5);
+  scale(2, 2);
   // circle(100, 100, 100);
   fill(95, 62, 20);
   triangle(-10, 0, 10, 0, 20, -230);
@@ -515,6 +515,9 @@ class Flower {
     this.noisey = random(20);
     this.range = 20;
 
+    this.osc = new p5.Oscillator('sine');
+
+    this.rate = [0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5]
     this.canPlay = true;
   }
   display() {
@@ -542,12 +545,15 @@ class Flower {
     if (dist(mouseX, mouseY, this.x, this.y) < this.r / 2) {
       if (this.canPlay == true) {
         treeSound.play();
-        treeSound.rate(random(0.4, 1.8));
+        treeSound.rate(random(this.rate));
+        // this.osc.start();
+        // this.osc.freq(random(200, 400), 0.1);
         this.canPlay = false;
         treeSound.setVolume(0.1);
       }
     }
     if (dist(mouseX, mouseY, this.x, this.y) > this.r / 2) {
+      // this.osc.amp(0, 0.5);
       this.canPlay = true;
     }
   }

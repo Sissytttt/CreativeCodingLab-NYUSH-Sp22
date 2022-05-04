@@ -1,6 +1,7 @@
 let width;
 let height;
 let flowers = [];
+let circles = [];
 
 function preload(){
   img = loadImage("page0Tree/Tree.png");
@@ -31,10 +32,53 @@ function draw() {
     flowers[i].update();
     flowers[i].interaction();
   }
-  ellipse(mouseX, mouseY, 10, 10);
+  let f = new Circle(mouseX + random(-10, 10), mouseY + random(-10, 10));
+  circles.push(f);
+
+  for (let i = 0; i < circles.length; i++) {
+    circles[i].display();
+    if (circles[i].trans <= 0){
+      circles.splice(i, 1);
+}
+}
 
   // background(255, 246, 212, trans);
 }
+
+
+class Circle {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.r = random(20, 30)
+    this.transTop = 50;
+    this.trans = 0
+    this.appear = true;
+  }
+
+  display() {
+    noStroke();
+    push();
+    colorMode(HSB, 100);
+    fill(random(85, 100), random(20, 70), 100, this.trans);
+    circle(this.x, this.y, this.r)
+    pop();
+    if (this.appear == true){
+    this.trans += 5
+    }
+    else if (this.appear == false){
+    this.trans -= 5
+    }
+    
+    if (this.trans > this.transTop){
+      this.appear = false
+    }
+    // tint(255, this.trans);
+    // image(img, this.x, this.y);
+// this.trans -= 10
+  }
+}
+
 
 
 

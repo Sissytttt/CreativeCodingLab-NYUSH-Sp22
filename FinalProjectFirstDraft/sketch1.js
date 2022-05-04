@@ -515,7 +515,7 @@ class Flower {
     this.noisey = random(20);
     this.range = 20;
 
-    this.osc = new p5.Oscillator('sine');
+    // this.osc = new p5.Oscillator('sine');
 
     this.rate = [0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5]
     this.canPlay = true;

@@ -3,9 +3,119 @@
     <script src="p5.sound1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style1.css">
     <meta charset="utf-8">
+    <title>SissyTianFinalProject</title>
+    
+<style>
 
+  .name {
+    position:absolute;
+    margin-top: 20px;
+    margin-left: 10px;
+    color: rgb(193, 185, 158);
+  }
+  .sidebar {
+          height: 100%;
+          width: 0;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: rgb(255, 232, 142);
+          opacity: 0.7;
+          overflow-x: hidden;
+          transition: 0.5s;
+          padding-top: 80px;
+      }
+
+    .sidebar a {
+      padding: 32px 8px 8px 24px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #757575;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar h {
+      padding: 32px 0px 30px 24px;
+      text-decoration: none;
+      font-size: 30px;
+      color: #393939;
+      display: block;
+    }
+
+
+    .sidebar a:hover {
+      font-size: 30px;
+
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    .openbtn {
+      position: absolute;
+      padding: 20px;
+      margin-top: 15px;
+      font-size: 50px;
+      cursor: pointer;
+      background-color: Transparent;
+      background-repeat:no-repeat;
+      border: none;
+      color: rgb(193, 185, 158);
+      border: none;
+      transition: 1s;
+    }
+
+    .openbtn:hover {
+      font-size: 60px;
+      color: rgb(146, 130, 74);
+    }
+
+    #main {
+      transition: margin-left 1.5s;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidebar {padding-top: 15px;}
+      .sidebar a {font-size: 18px;}
+    }
+</style>
   </head>
   <body>
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      <h>Menu</h>
+      <a href="indexP0.html">Home</a>
+      <a href="indexP1.html">Explore</a>
+      <a href="https://wp.nyu.edu/sissytian/2022/05/02/878/">About</a>
+      <a href="https://wp.nyu.edu/sissytian/">More works</a>
+    </div>
+    
+    <div class = "name">
+      <h>SissyTian</h>
+    </div>
+
+    <div id="main">
+      <button class="openbtn" onclick="openNav()">☰</button>  
+    </div>
+    
+    <script>
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.getElementById("main").style.marginLeft= "0";
+    }
+    </script>
     <main>
     </main>
     <script src="sketch1.js"></script>

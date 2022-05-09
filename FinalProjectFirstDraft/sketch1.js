@@ -64,16 +64,16 @@ function setup() {
   hill2 = new Hill2(width*2/3.5, height);
   hill3 = new Hill3(width*3/4, height);
 
-  button1 = createButton('STOP');
-  button1.position(width/5-60, height-180);
-  button1.size(80, 35)
-  button1.style('background-color', color(255, 246, 212))
-  button1.style('color', color(255, 246, 212));
-  button1.style("font-family", "Comic Sans MS");
-  button1.style("font-size", "24px");
-  button1.mousePressed(Stop1);
-  button1.mouseOver(button1Show);
-  button1.mouseOut(button1Hide);
+  // button1 = createButton('STOP');
+  // button1.position(width/5-60, height-180);
+  // button1.size(80, 35)
+  // button1.style('background-color', color(255, 246, 212))
+  // button1.style('color', color(255, 246, 212));
+  // button1.style("font-family", "Comic Sans MS");
+  // button1.style("font-size", "24px");
+  // button1.mousePressed(Stop1);
+  // button1.mouseOver(button1Show);
+  // button1.mouseOut(button1Hide);
   
 
   // sun
@@ -153,21 +153,21 @@ function draw() {
 
 }
 
-function button1Show(){
-  // if (mouseX > width/5-60){
-    button1.style('background-color', color(142, 163, 85))
-    button1.style('color', color(0, 102, 51));
-  // }
-}
+// function button1Show(){
+//   // if (mouseX > width/5-60){
+//     button1.style('background-color', color(142, 163, 85))
+//     button1.style('color', color(0, 102, 51));
+//   // }
+// }
 
-function button1Hide(){
-  // if (mouseX > width/5-60){
-    button1.style('background-color', color(255, 246, 212))
-    button1.style('color', color(255, 246, 212));
-    button1.noStroke();
-    // button1.style('border', none);
-  // }
-}
+// function button1Hide(){
+//   // if (mouseX > width/5-60){
+//     button1.style('background-color', color(255, 246, 212))
+//     button1.style('color', color(255, 246, 212));
+//     button1.noStroke();
+//     // button1.style('border', none);
+//   // }
+// }
 
 
 
@@ -305,7 +305,7 @@ class Hill1 {
     this.vel = 7;
     this.accel = 0.5;
     this.canplay = true;
-
+    this.alpha = 0;
     this.clickTime = [];
   }
 
@@ -321,7 +321,7 @@ class Hill1 {
     curveVertex(width/4, 0);
     curveVertex(width/4, 0);
     endShape();
-
+    
     pop();
   }
 
@@ -342,8 +342,16 @@ class Hill1 {
   }
 
   interaction() {
+    if (dist(mouseX, mouseY, this.x, this.y-30) < 100){
+      this.alpha = map(dist(mouseX, mouseY, this.x, this.y-30), 10, 150, 255, 0)
+      fill(92, 105, 56, this.alpha);
+      circle(this.x, this.y, 60);
+    }
     if (mouseIsPressed) {
-      if (
+      if (dist(mouseX, mouseY, this.x, this.y-30) < 30){
+        this.clickTime = [];
+      }
+      else if (
         mouseX > this.x - width/12 &&
         mouseX < this.x + width/8 &&
         mouseY < height &&
@@ -360,6 +368,7 @@ class Hill1 {
         }
       }
     }
+
     for (let i = 0; i < this.clickTime.length; i++) {
       if (
         (millis() - this.clickTime[i]) % 2000 > 0 &&
@@ -371,9 +380,9 @@ class Hill1 {
   }
 }
 
-function Stop1(){
-  hill1.clickTime = [];
-}
+// function Stop1(){
+//   hill1.clickTime = [];
+// }
 
 
 class Hill2 {
@@ -384,6 +393,7 @@ class Hill2 {
     this.up = false;
     this.vel = 7;
     this.accel = 0.5;
+    this.alpha = 0;
     this.canplay = true;
 
     this.clickTime = [];
@@ -422,8 +432,16 @@ class Hill2 {
   }
 
   interaction() {
+    if (dist(mouseX, mouseY, this.x-150, this.y - 30) < 100){
+      this.alpha = map(dist(mouseX, mouseY, this.x-150, this.y - 50), 10, 150, 255, 0)
+      fill(80, 127, 39, this.alpha);
+      circle(this.x-150, this.y - 30, 60);
+    }
     if (mouseIsPressed) {
-      if (
+      if (dist(mouseX, mouseY, this.x-150, this.y - 30) < 30){
+        this.clickTime = [];
+      }
+      else if (
         mouseX > this.x - width/8 &&
         mouseX < this.x + width/8 &&
         mouseY < height - height/50 &&
@@ -460,6 +478,7 @@ class Hill3 {
     this.vel = 7;
     this.accel = 0.5;
     this.canplay = true;
+    this.alpha = 0;
 
     this.clickTime = [];
   }
@@ -496,8 +515,16 @@ class Hill3 {
   }
 
   interaction() {
+    if (dist(mouseX, mouseY, this.x + 50, this.y-30) < 100){
+      this.alpha = map(dist(mouseX, mouseY, this.x + 50, this.y-30), 10, 150, 255, 0)
+      fill(16, 105, 48, this.alpha);
+      circle(this.x + 50, this.y, 60);
+    }
     if (mouseIsPressed) {
-      if (
+      if (dist(mouseX, mouseY, this.x + 50, this.y-30) < 30){
+        this.clickTime = [];
+      }
+      else if (
         mouseX > this.x - width/8 &&
         mouseX < this.x + width/8 &&
         mouseY < height &&
@@ -657,7 +684,11 @@ function playSynth() {
   let vel = 0.1;
   n = random(note)
   print(n)
-  polySynth.play(n, vel, 0, dur)
+  try {
+    polySynth.play(n, vel, 0, dur)
+  } catch (e) {
+    console.log(e);
+  }
 
 }
 

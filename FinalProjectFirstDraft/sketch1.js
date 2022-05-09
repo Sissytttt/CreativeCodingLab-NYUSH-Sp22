@@ -32,7 +32,7 @@ let sunSound2;
 
 // tree
 let flowers = [];
-let note = ["C3", "E3", "G3", "C4"];
+let note = ["A3", "C4", "#C4", "E4", "G4", "A4"];
 let polySynth;
 
 

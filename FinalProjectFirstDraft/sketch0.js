@@ -32,6 +32,7 @@ function draw() {
     flowers[i].update();
     flowers[i].interaction();
   }
+  
   let f = new Circle(mouseX + random(-10, 10), mouseY + random(-10, 10));
   circles.push(f);
 

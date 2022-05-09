@@ -5,6 +5,7 @@ let height;
 let hill1canPlay = true;
 let hill1SoundDrum;
 let hill1SoundIsPlaying = false;
+let button1;
 
 // hill 2
 let hill2canPlay = true;
@@ -31,6 +32,11 @@ let sunSound2;
 
 // tree
 let flowers = [];
+let note = ["C3", "E3", "G3", "C4"];
+let polySynth;
+
+
+let circles = [];
 
 
 function preload() {
@@ -47,6 +53,7 @@ function preload() {
   treeSound = loadSound("TreeSound/piano.mp3");
 }
 
+
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
   width = window.innerWidth;
@@ -56,6 +63,18 @@ function setup() {
   hill1 = new Hill1(width/5, height);
   hill2 = new Hill2(width*2/3.5, height);
   hill3 = new Hill3(width*3/4, height);
+
+  button1 = createButton('STOP');
+  button1.position(width/5-60, height-180);
+  button1.size(80, 35)
+  button1.style('background-color', color(255, 246, 212))
+  button1.style('color', color(255, 246, 212));
+  button1.style("font-family", "Comic Sans MS");
+  button1.style("font-size", "24px");
+  button1.mousePressed(Stop1);
+  button1.mouseOver(button1Show);
+  button1.mouseOut(button1Hide);
+  
 
   // sun
   sunx = width*4/5
@@ -67,6 +86,12 @@ function setup() {
   for (let i = 0; i < 25; i++) {
     flowers.push(new Flower(random(width/3 - width/10, width/3 + width/10), random(height - height/6, height - height/1.9)));
   }
+
+
+  polySynth = new p5.PolySynth();
+
+  noCursor();
+
 }
 
 function draw() {
@@ -77,6 +102,7 @@ function draw() {
   hill2.jump();
   hill2.interaction();
 
+
   hill3.display();
   hill3.jump();
   hill3.interaction();
@@ -84,6 +110,7 @@ function draw() {
   hill1.display();
   hill1.jump();
   hill1.interaction();
+  // button1Show()
 
   // Sun
   sunset.movement();
@@ -100,7 +127,6 @@ function draw() {
     flowers[i].interaction();
   }
 
-
   // stroke(0)
   // line(width/5 - width/12, 0, width/5 - width/12, height)
   // line(width/5 + width/8, 0, width/5 + width/8, height)
@@ -113,7 +139,37 @@ function draw() {
 
   // line(width*3/4 - width/8, 0, width*3/4 - width/8, height)
   // line(width*3/4 + width/8, 0, width*3/4 + width/8, height)
+
+  let f = new Circle(mouseX + random(-10, 10), mouseY + random(-10, 10));
+  circles.push(f);
+
+  for (let i = 0; i < circles.length; i++) {
+    circles[i].display();
+    if (circles[i].trans <= 0){
+      circles.splice(i, 1);
 }
+}
+
+
+}
+
+function button1Show(){
+  // if (mouseX > width/5-60){
+    button1.style('background-color', color(142, 163, 85))
+    button1.style('color', color(0, 102, 51));
+  // }
+}
+
+function button1Hide(){
+  // if (mouseX > width/5-60){
+    button1.style('background-color', color(255, 246, 212))
+    button1.style('color', color(255, 246, 212));
+    button1.noStroke();
+    // button1.style('border', none);
+  // }
+}
+
+
 
 // ----------------------------Sun---------------------------------
 class Sun {
@@ -314,6 +370,11 @@ class Hill1 {
     }
   }
 }
+
+function Stop1(){
+  hill1.clickTime = [];
+}
+
 
 class Hill2 {
   constructor(xpos, ypos) {
@@ -517,7 +578,10 @@ class Flower {
 
     // this.osc = new p5.Oscillator('sine');
 
-    this.rate = [0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5]
+
+
+    // this.rate = [0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5]
+
     this.canPlay = true;
   }
   display() {
@@ -525,6 +589,7 @@ class Flower {
     fill(this.color);
     circle(this.x, this.y, this.r);
   }
+
   update() {
     this.x =
       this.baseX + map(noise(this.noisex), 0, 1, -this.range, this.range);
@@ -533,6 +598,7 @@ class Flower {
     this.noisex += 0.001;
     this.noisey += 0.001;
   }
+
   interaction() {
     if (dist(mouseX, mouseY, this.x, this.y) < 3 * this.r) {
       this.range += 1;
@@ -544,10 +610,12 @@ class Flower {
     }
     if (dist(mouseX, mouseY, this.x, this.y) < this.r / 2) {
       if (this.canPlay == true) {
-        treeSound.play();
-        treeSound.rate(random(this.rate));
+        // treeSound.play();
+        // treeSound.rate(random(this.rate));
+
         // this.osc.start();
         // this.osc.freq(random(200, 400), 0.1);
+        playSynth();
         this.canPlay = false;
         treeSound.setVolume(0.1);
       }
@@ -576,4 +644,53 @@ function mouseReleased() {
   hill2canPlay = true;
   hill3canPlay = true;
   canChange = true;
+}
+
+
+function playSynth() {
+  userStartAudio();
+  // note duration (in seconds)
+  let dur = 1.5;
+  // time from now (in seconds)
+  let time = 0;
+  // velocity (volume, from 0 to 1)
+  let vel = 0.1;
+  n = random(note)
+  print(n)
+  polySynth.play(n, vel, 0, dur)
+
+}
+
+
+class Circle {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.r = random(20, 30)
+    this.transTop = 50;
+    this.trans = 0
+    this.appear = true;
+  }
+
+  display() {
+    noStroke();
+    push();
+    colorMode(HSB, 100);
+    fill(random(85, 100), random(20, 70), 100, this.trans);
+    circle(this.x, this.y, this.r)
+    pop();
+    if (this.appear == true){
+    this.trans += 5
+    }
+    else if (this.appear == false){
+    this.trans -= 5
+    }
+    
+    if (this.trans > this.transTop){
+      this.appear = false
+    }
+    // tint(255, this.trans);
+    // image(img, this.x, this.y);
+// this.trans -= 10
+  }
 }
